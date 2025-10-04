@@ -1,8 +1,28 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<StudentScorecard.Models.Student>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h2>Students</h2>
+
+<a asp-action="Create" class="btn btn-primary">Add Student</a>
+
+<table class="table table-bordered mt-3">
+    <tr>
+        <th>Full Name</th>
+        <th>Class</th>
+        
+        <th>No Of Subjects</th>
+        <th>Percentage</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var student in Model)
+    {
+        <tr>
+            <td>@(student.FirstName + " " + student.LastName)</td>
+            <td>@student.Class</td>
+            <td>@student.NumberofSubjects</td>
+            <td>@student.Percentage</td>
+            <td>
+                <a asp-action="AddMarks" asp-route-id="@student.Id">Add Marks</a>
+            </td>
+        </tr>
+    }
+</table>

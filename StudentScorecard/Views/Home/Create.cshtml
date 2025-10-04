@@ -1,0 +1,32 @@
+﻿@model StudentScorecard.Models.StudentViewModels
+
+<h2>Add Student</h2>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label>First Name</label>
+        <input asp-for="FirstName" class="form-control" />
+    </div>
+    <div>
+        <label>Last Name</label>
+        <input asp-for="LastName" class="form-control" />
+    </div>
+    <div>
+        <label>Class</label>
+        <input asp-for="Class" class="form-control" />
+    </div>
+    @* <div>
+        <label>Mobile</label>
+        <input asp-for="Mobile" class="form-control" />
+    </div> *@
+
+    <div>
+        <label>Subjects</label><br />
+        @foreach (var sub in Model.AvailableSubjects)
+        {
+            <input type="checkbox" name="SelectedSubjects" value="@sub.Id" /> @sub.Name <br />
+        }
+    </div>
+
+    <button type="submit" class="btn btn-success mt-2">Save</button>
+</form>
